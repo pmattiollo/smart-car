@@ -3,10 +3,10 @@
 import os
 from threading import Thread
 
-from PyQt5 import QtCore
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from PyQt6 import QtCore
+from PyQt6.QtCore import *
+from PyQt6.QtGui import *
+from PyQt6.QtWidgets import *
 
 from client_ui import Ui_Client
 from mode import MODE
@@ -39,17 +39,17 @@ class ClientWindow(QMainWindow, Ui_Client):
         self.Key_S = False
         self.Key_D = False
         self.Key_Space = False
-        self.setFocusPolicy(Qt.StrongFocus)
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
         self.progress_Power.setMinimum(0)
         self.progress_Power.setMaximum(100)
         self.label_Servo1.setText('90')
         self.label_Servo2.setText('90')
-        self.label_Video.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignVCenter)
-        self.label_Servo1.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignVCenter)
-        self.label_Servo2.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignVCenter)
+        self.label_Video.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.label_Servo1.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.label_Servo2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
-        self.label_FineServo1.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignVCenter)
-        self.label_FineServo2.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignVCenter)
+        self.label_FineServo1.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+        self.label_FineServo2.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
 
         self.HSlider_Servo1.setMinimum(0)
         self.HSlider_Servo1.setMaximum(180)
