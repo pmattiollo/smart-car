@@ -39,6 +39,7 @@ adc = ADC()
 
 @app.route("/buzzer", methods=["POST"])
 def buzzer():
+    global buzzer
     value = request.get_json().get('value')
     if value == None:
         return ('value can not be null', 400)
@@ -49,6 +50,7 @@ def buzzer():
 
 @app.route("/motor", methods=["POST"])
 def motor():
+    global motor
     req = request.get_json()
     motor_values = {'front_left': req.get('front_left'), 'rear_left': req.get('rear_left'),
                     'front_right': req.get('front_right'), 'rear_right': req.get('rear_right')}
@@ -68,6 +70,7 @@ def motor():
 
 @app.route("/servo", methods=["POST"])
 def servo():
+    global servo
     req = request.get_json()
     channel = req.get('channel')
     angle = req.get('angle')
@@ -88,16 +91,18 @@ def servo():
 
 @app.route("/sensors", methods=["GET"])
 def sensors():
+    global ultrasonic
+    global adc
     global last_sensor
     if last_sensor != None and last_sensor[0] > (current_milli_time() - SENSOR_GET_THREASHOLD_MS):
         return last_sensor[1]
     app.logger.debug('Request for reading sensor data')
-    ultrasonic = ultrasonic.get_distance()
+    ultrasonic_value = ultrasonic.get_distance()
     light1 = adc.recv(0)
     light2 = adc.recv(1)
     power = adc.recv(2) * 3
     sensor_date = {
-        'ultrasonic': ultrasonic,
+        'ultrasonic': ultrasonic_value,
         'light1': light1,
         'light2': light2,
         'power': power
