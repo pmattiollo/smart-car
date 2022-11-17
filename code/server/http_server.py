@@ -80,9 +80,8 @@ def set_servo():
         return ('angle can not be null', 400)
     try:
         int(angle)
-        return ('angle should be integer', 400)
     except ValueError:
-        pass
+        return ('angle should be integer', 400)
     app.logger.debug(
         f'Servo request received with channel [{channel}] and angle [{angle}]')
     servo.set_servo_pwm(channel, angle)
