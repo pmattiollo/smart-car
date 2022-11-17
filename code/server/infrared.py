@@ -2,6 +2,9 @@ import RPi.GPIO as GPIO
 
 class Infrared:
     def __init__(self):
+        self.IR01 = 14
+        self.IR02 = 15
+        self.IR03 = 23
         GPIO.setup(self.IR01, GPIO.IN)
         GPIO.setup(self.IR02, GPIO.IN)
         GPIO.setup(self.IR03, GPIO.IN)
