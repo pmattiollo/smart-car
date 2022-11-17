@@ -63,8 +63,8 @@ def set_motor():
     if motor_values['rear_right'] == None:
         return ('rear_right can not be null', 400)
     app.logger.debug(f'Motor request received with value [{motor_values}]')
-    motor.set_speed(motor['front_left'], motor['rear_left'],
-                    motor['front_right'], motor['rear_right'])
+    motor.set_speed(motor_values['front_left'], motor_values['rear_left'],
+                    motor_values['front_right'], motor_values['rear_right'])
     return ('', 204)
 
 
