@@ -38,7 +38,7 @@ adc = ADC()
 # led = Led()
 
 @app.route("/buzzer", methods=["POST"])
-def buzzer():
+def set_buzzer():
     global buzzer
     value = request.get_json().get('value')
     if value == None:
@@ -49,7 +49,7 @@ def buzzer():
 
 
 @app.route("/motor", methods=["POST"])
-def motor():
+def set_motor():
     global motor
     req = request.get_json()
     motor_values = {'front_left': req.get('front_left'), 'rear_left': req.get('rear_left'),
@@ -69,7 +69,7 @@ def motor():
 
 
 @app.route("/servo", methods=["POST"])
-def servo():
+def set_servo():
     global servo
     req = request.get_json()
     channel = req.get('channel')
@@ -90,7 +90,7 @@ def servo():
 
 
 @app.route("/sensors", methods=["GET"])
-def sensors():
+def get_sensors():
     global ultrasonic
     global adc
     global last_sensor
