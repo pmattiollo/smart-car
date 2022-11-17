@@ -27,7 +27,7 @@ dictConfig({
 def current_milli_time():
     return round(time.time() * 1000)
 
-SENSOR_GET_THREASHOLD_MS = 5000
+SENSOR_GET_THREASHOLD_MS = 50
 last_sensor = None
 
 motor = Motor()
