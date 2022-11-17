@@ -4,9 +4,11 @@ from flask import Flask, request
 
 from buzzer import Buzzer
 from adc import ADC
+from infrared import Infrared
 from ultrasonic import Ultrasonic
 from motor import Motor
 from servo import Servo
+
 
 app = Flask(__name__)
 dictConfig({
@@ -24,8 +26,11 @@ dictConfig({
         'handlers': ['wsgi']
     }
 })
+
+
 def current_milli_time():
     return round(time.time() * 1000)
+
 
 SENSOR_GET_THREASHOLD_MS = 50
 last_sensor = None
@@ -35,7 +40,9 @@ servo = Servo()
 ultrasonic = Ultrasonic()
 buzzer = Buzzer()
 adc = ADC()
+infrared = Infrared()
 # led = Led()
+
 
 @app.route("/buzzer", methods=["POST"])
 def set_buzzer():
@@ -100,11 +107,13 @@ def get_sensors():
     light1 = adc.recv(0)
     light2 = adc.recv(1)
     power = adc.recv(2) * 3
+    infrared_value = infrared.get_value()
     sensor_date = {
         'ultrasonic': ultrasonic_value,
         'light1': light1,
         'light2': light2,
-        'power': power
+        'power': power,
+        'infrared': infrared_value
     }
     last_sensor = (current_milli_time(), sensor_date)
     return sensor_date
