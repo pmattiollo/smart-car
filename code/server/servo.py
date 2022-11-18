@@ -2,6 +2,7 @@ from pca9685 import PCA9685
 
 
 class Servo:
+    initialized = False
     def init(self):
         if self.initialized == True:
             return

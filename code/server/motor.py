@@ -8,6 +8,7 @@ def duty_range(duty1, duty2, duty3, duty4):
 
 
 class Motor:
+    initialized = False
     def init(self):
         if self.initialized == True:
             return
