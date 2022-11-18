@@ -2,11 +2,14 @@ from pca9685 import PCA9685
 
 
 class Servo:
-    def __init__(self):
+    def init(self):
+        if self.initialized == True:
+            return
         self.PwmServo = PCA9685(0x40, debug=True)
         self.PwmServo.set_pwm_freq(50)
         self.PwmServo.set_servo_pulse(8, 1500)
         self.PwmServo.set_servo_pulse(9, 1500)
+        self.initialized = True
 
     def set_servo_pwm(self, channel, angle, error=10):
         angle = int(angle)
