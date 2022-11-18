@@ -13,6 +13,7 @@ class Servo:
         self.initialized = True
 
     def set_servo_pwm(self, channel, angle, error=10):
+        self.init()
         angle = int(angle)
         if channel == '0':
             self.PwmServo.set_servo_pulse(8, 2500 - int((angle + error) / 0.09))
