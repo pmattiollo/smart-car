@@ -8,9 +8,12 @@ def duty_range(duty1, duty2, duty3, duty4):
 
 
 class Motor:
-    def __init__(self):
+    def init(self):
+        if self.initialized == True:
+            return
         self.pwm = PCA9685(0x40, debug=True)
         self.pwm.set_pwm_freq(50)
+        self.initialized = True
 
     def left_upper_wheel(self, duty):
         if duty > 0:
@@ -57,6 +60,7 @@ class Motor:
             self.pwm.set_motor_pwm(5, 4095)
 
     def set_speed(self, duty1, duty2, duty3, duty4):
+        self.init()
         duty1, duty2, duty3, duty4 = duty_range(duty1, duty2, duty3, duty4)
         self.left_upper_wheel(-duty1)
         self.left_lower_wheel(-duty2)
